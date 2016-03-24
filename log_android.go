@@ -5,6 +5,7 @@ package applog
 /*
 #cgo LDFLAGS: -landroid -llog
 #include <android/log.h>
+#include <stdlib.h>
 
 void log_print_debug(char *tag, char *str) {
   __android_log_print(ANDROID_LOG_DEBUG, tag, str);
@@ -13,6 +14,18 @@ void log_print_debug(char *tag, char *str) {
 */
 import "C"
 
-func printDebug(tag, str string) {
-	C.log_print_debug(C.CString(tag), C.CString(str))
+import (
+  "unsafe"
+)
+
+func callFn(fn func(*C.char, *C.char), tag, str string) {
+  ctag, cstr := C.CString(tag), C.CString(str)
+  defer C.free(unsafe.Pointer(ctag))
+  defer C.free(unsafe.Pointer(cstr))
+
+  fn(ctag, cstr)
+}
+
+func printDebug(tag, str *C.char) {
+	C.log_print_debug(tag, str)
 }
