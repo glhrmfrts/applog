@@ -8,11 +8,11 @@ $ go get github.com/glhrmfrts/applog
 ```
 
 Import it into yours
-```
-import "github.com/glhrfmrts/applog
+```go
+import "github.com/glhrfmrts/applog"
 ```
 
 Make sure you build your project with [gomobile](https://github.com/golang/mobile)
 ```
-gomobile build -target=android <yourpackage>
+$ gomobile build -target=android <yourpackage>
 ```
