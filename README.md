@@ -16,3 +16,6 @@ Make sure you build your project with [gomobile](https://github.com/golang/mobil
 ```
 $ gomobile build -target=android <yourpackage>
 ```
+
+## License
+MIT
