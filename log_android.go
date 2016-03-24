@@ -15,15 +15,15 @@ void log_print_debug(char *tag, char *str) {
 import "C"
 
 import (
-  "unsafe"
+	"unsafe"
 )
 
 func callFn(fn func(*C.char, *C.char), tag, str string) {
-  ctag, cstr := C.CString(tag), C.CString(str)
-  defer C.free(unsafe.Pointer(ctag))
-  defer C.free(unsafe.Pointer(cstr))
+	ctag, cstr := C.CString(tag), C.CString(str)
+	defer C.free(unsafe.Pointer(ctag))
+	defer C.free(unsafe.Pointer(cstr))
 
-  fn(ctag, cstr)
+	fn(ctag, cstr)
 }
 
 func printDebug(tag, str *C.char) {
